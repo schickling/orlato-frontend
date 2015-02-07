@@ -10,10 +10,25 @@ function json(response) {
   return response.json();
 }
 
-var api = 'http://localhost:8000/initial';
+var api = 'http://localhost:8000/';
 
 module.exports = {
   getInitial: function() {
-    return fetch(api).then(status).then(json);
+    return fetch(api + 'initial').then(status).then(json);
+  },
+
+  sendAnswer: function() {
+    var options = {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: 'Hubot',
+        login: 'hubot',
+      })
+    };
+    return fetch(api + 'answer', options).then(status).then(json);
   },
 };

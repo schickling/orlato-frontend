@@ -1,6 +1,7 @@
 var React = require('react');
 var InputQuestion = require('../InputQuestion');
 var SelectQuestion = require('../SelectQuestion');
+var RadioQuestion = require('../RadioQuestion');
 var { Toolbar, ToolbarGroup, DropDownMenu, Icon, DropDownIcon, RaisedButton } = require('material-ui');
 var api = require('../api');
 
