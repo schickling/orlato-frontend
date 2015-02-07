@@ -77,9 +77,9 @@ module.exports = React.createClass({
           </ToolbarGroup>
         </Toolbar>
         <div className="quote">
-        {groups}
-        <div className="estimate">estimate: {this.state.estimate}</div>
-        <div className="progress">progress: <Slider name="slider2" disabled={true} value={this.state.progress} /> 30%
+          {groups}
+          <div className="estimate">estimate: {this.state.estimate}</div>
+          <div className="progress">progress:  <Slider name="slider2" disabled={true} value={this.state.progress} /></div>
         </div>
       </div>
     );
