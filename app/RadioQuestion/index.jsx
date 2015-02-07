@@ -8,10 +8,11 @@ module.exports = React.createClass({
 
   propTypes: {
     question: React.PropTypes.object.isRequired,
+    update: React.PropTypes.func.isRequired,
   },
 
   _updateAnswer: function() {
-    api.sendAnswer();
+    api.sendAnswer().then(this.props.update);
   },
 
   render: function() {
@@ -23,7 +24,7 @@ module.exports = React.createClass({
     return (
       <div>
         <span>{beforeToken}</span>
-        <RadioButtonGroup onChange={this._updateAnswer} defaultSelected="not_light">
+        <RadioButtonGroup name={text} onChange={this._updateAnswer}>
           {this.props.question.answers.map(a => <RadioButton value={a} label={a} />)}
         </RadioButtonGroup>
         <span>{afterToken}</span>

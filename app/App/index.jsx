@@ -19,34 +19,42 @@ module.exports = React.createClass({
 
   componentWillMount: function() {
     var self = this;
-    api.getInitial().then(response => self.setState({
-      groups: response.groups,
-      estimate: response.estimate,
-      progress: response.progress,
+    api.getInitial().then(data => self.setState({
+      groups: data.groups,
+      estimate: data.estimate,
+      progress: data.progress,
     }));
   },
 
+  _mergeState: function(data) {
+    this.setState({
+      groups: this.state.groups.concat(data.groups),
+      estimate: data.estimate,
+      progress: data.progress,
+    });
+  },
+
   render: function() {
+    var merge = this._mergeState;
     var groups = this.state.groups.map(function(group) {
       var questions = group.map(function(question) {
+        var Component;
         switch (question.type) {
-          case 'input':
-            return <InputQuestion question={question} />;
-          case 'select':
-            return <SelectQuestion question={question} />;
-          case 'radio':
-            return <RadioQuestion question={question} />;
+          case 'input': Component = InputQuestion; break;
+          case 'select': Component = SelectQuestion; break;
+          case 'radio': Component = RadioQuestion; break;
           default:
             throw new Error(question.type + ' not implemented');
         }
+        return <Component question={question} update={merge} />
       });
 
       return (
         <div className="container">
         <div className="questions">
-          <ul>
-            {questions}
-          </ul>
+        <ul>
+        {questions}
+        </ul>
         </div>
         </div>
       );
@@ -68,22 +76,21 @@ module.exports = React.createClass({
 
     return (
       <div>
-        <Toolbar>
-          <ToolbarGroup key={0} float="left">
-            <span className="mui-toolbar-separator">&nbsp;</span>
-          </ToolbarGroup>
-            <ToolbarGroup key={1} float="right">
-            <span className="mui-toolbar-separator">&nbsp;</span>
-            <RaisedButton label="Insure me" primary={true} />
-          </ToolbarGroup>
-        </Toolbar>
-        <div className="quote">
-          {groups}
-          <div className="estimate">estimate: {this.state.estimate}</div>
-          <div className="progress">progress:
-          <Slider name="slider2" disabled={true} value={this.state.progress} /></div>
-          
-        </div>
+
+      <Toolbar>
+      <ToolbarGroup key={0} float="left">
+      <span className="mui-toolbar-separator">&nbsp;</span>
+      </ToolbarGroup>
+      <ToolbarGroup key={1} float="right">
+      <span className="mui-toolbar-separator">&nbsp;</span>
+      <RaisedButton label="Insure me" primary={true} />
+      </ToolbarGroup>
+      </Toolbar>
+      <div className="quote">
+      {groups}
+      <div className="estimate">estimate: {this.state.estimate}</div>
+      <div className="progress">progress:  <Slider name="slider2" disabled={true} value={this.state.progress} /></div>
+      </div>
       </div>
     );
   },
