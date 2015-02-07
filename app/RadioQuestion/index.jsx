@@ -1,4 +1,6 @@
 var React = require('react');
+var api = require('../api');
+var { RadioButtonGroup, RadioButton } = require('material-ui');
 
 require('./index.less');
 
@@ -8,16 +10,22 @@ module.exports = React.createClass({
     question: React.PropTypes.object.isRequired,
   },
 
+  _updateAnswer: function() {
+    api.sendAnswer();
+  },
+
   render: function() {
     var text = this.props.question.text;
     var tokenIndex = text.indexOf('%!');
     var beforeToken = text.substr(0, tokenIndex);
     var afterToken = text.substr(tokenIndex + 2);
-    console.log(beforeToken, afterToken);
+
     return (
       <div>
         <span>{beforeToken}</span>
-        <input type="text" />
+        <RadioButtonGroup onChange={this._updateAnswer} defaultSelected="not_light">
+          {this.props.question.answers.map(a => <RadioButton value={a} label={a} />)}
+        </RadioButtonGroup>
         <span>{afterToken}</span>
       </div>
     );
