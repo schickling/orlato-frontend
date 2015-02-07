@@ -8,10 +8,11 @@ module.exports = React.createClass({
 
   propTypes: {
     question: React.PropTypes.object.isRequired,
+    update: React.PropTypes.func.isRequired,
   },
 
   _updateAnswer: function() {
-    api.sendAnswer();
+    api.sendAnswer().then(this.props.update);
   },
 
   render: function() {
