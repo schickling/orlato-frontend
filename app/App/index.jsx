@@ -80,7 +80,9 @@ module.exports = React.createClass({
         <div className="quote">
           {groups}
           <div className="estimate">estimate: {this.state.estimate}</div>
-          <div className="progress">progress:  <Slider name="slider2" disabled={true} value={this.state.progress} /></div>
+          <div className="progress">progress:
+          <Slider name="slider2" disabled={true} value={this.state.progress} /></div>
+          
         </div>
       </div>
     );
