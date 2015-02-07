@@ -1,4 +1,5 @@
 var React = require('react');
+var { TextField } = require('material-ui');
 
 require('./index.less');
 
@@ -13,11 +14,11 @@ module.exports = React.createClass({
     var tokenIndex = text.indexOf('%!');
     var beforeToken = text.substr(0, tokenIndex);
     var afterToken = text.substr(tokenIndex + 2);
-    console.log(beforeToken, afterToken);
+
     return (
       <div>
         <span>{beforeToken}</span>
-        <input type="text" />
+        <TextField hintText="Hint Text" />
         <span>{afterToken}</span>
       </div>
     );
