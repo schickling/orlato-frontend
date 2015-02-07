@@ -10,7 +10,7 @@ function json(response) {
   return response.json();
 }
 
-var api = 'http://localhost:8000/initial.json';
+var api = 'http://localhost:8000/initial';
 
 module.exports = {
   getInitial: function() {
