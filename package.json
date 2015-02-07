@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack -p",
     "prestart": "npm install",
-    "start": "webpack-dev-server --hot --inline --history-api-fallback --devtool source-map --port 8000"
+    "start": "webpack-dev-server --hot --inline --history-api-fallback --devtool source-map --port 9000"
   },
   "author": "",
   "license": "ISC",
@@ -23,7 +23,9 @@
     "webpack-dev-server": "^1.6.6"
   },
   "dependencies": {
+    "es6-promise": "^2.0.1",
     "lodash": "^2.4.1",
-    "react": "^0.12.2"
+    "react": "^0.12.2",
+    "whatwg-fetch": "^0.7.0"
   }
 }
