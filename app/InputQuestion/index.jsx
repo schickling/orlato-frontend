@@ -1,6 +1,5 @@
 var React = require('react');
 var { TextField } = require('material-ui');
-
 require('./index.less');
 
 module.exports = React.createClass({
