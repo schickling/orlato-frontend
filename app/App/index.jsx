@@ -32,6 +32,8 @@ module.exports = React.createClass({
             return <InputQuestion question={question} />;
           case 'select':
             return <SelectQuestion question={question} />;
+          case 'radio':
+            return <RadioQuestion question={question} />;
           default:
             throw new Error(question.type + ' not implemented');
         }
