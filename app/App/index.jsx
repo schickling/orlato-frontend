@@ -1,19 +1,30 @@
 var React = require('react');
 var InputQuestion = require('../InputQuestion');
 var SelectQuestion = require('../SelectQuestion');
-var RadioQuestion = require('../RadioQuestion');
 var DateQuestion = require('../DateQuestion');
 var { Slider, FlatButton } = require('material-ui');
 var api = require('../api');
 
 require('./index.less');
 
+function questionToComponent(question) {
+  if (!question) return;
+  var Component;
+  switch (question.type) {
+    case 'input': Component = InputQuestion; break;
+    case 'select': Component = SelectQuestion; break;
+    case 'date': Component = DateQuestion; break;
+    default: throw new Error(question.type + ' not implemented');
+  }
+  return <Component question={question} update={this._update} />;
+}
+
 module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      groups: [],
-      estimate: 0,
+      previousQuestion: null,
+      currentQuestion: null,
       progress: 0,
     };
   },
@@ -21,46 +32,23 @@ module.exports = React.createClass({
   componentWillMount: function() {
     var self = this;
     api.getInitial().then(data => self.setState({
-      groups: data.groups,
-      estimate: data.estimate,
+      currentQuestion: data.question,
       progress: data.progress,
     }));
   },
 
-  _mergeState: function(data) {
+  _update: function(data) {
     this.setState({
-      groups: this.state.groups.concat(data.groups),
-      estimate: data.estimate,
+      previousQuestion: this.state.currentQuestion,
+      currentQuestion: data.question,
       progress: data.progress,
     });
   },
 
   render: function() {
     var merge = this._mergeState;
-    var groups = this.state.groups.map(function(group) {
-      var questions = group.map(function(question) {
-        var Component;
-        switch (question.type) {
-          case 'input': Component = InputQuestion; break;
-          case 'select': Component = SelectQuestion; break;
-          case 'radio': Component = RadioQuestion; break;
-          case 'date': Component = DateQuestion; break;
-          default:
-            throw new Error(question.type + ' not implemented');
-        }
-        return <Component question={question} update={merge} />
-      });
-
-      return (
-        <div className="container">
-        <div className="questions">
-        <ul>
-        {questions}
-        </ul>
-        </div>
-        </div>
-      );
-    });
+    var previousQuestion = questionToComponent.call(this, this.state.previousQuestion);
+    var currentQuestion = questionToComponent.call(this, this.state.currentQuestion);
 
     var filterOptions = [
       { payload: '1', text: 'All Broadcasts' },
@@ -86,7 +74,8 @@ module.exports = React.createClass({
         </span>
       </div>
       <div className="quote">
-        {groups}
+      Previous: {previousQuestion}
+        Current: {currentQuestion}
       </div>
         <div className="responsewrapper">
           <div className="response">
