@@ -67,21 +67,21 @@ module.exports = React.createClass({
     return (
      <div> 
       <div className="topmenu">
-        <img src="https://files.slack.com/files-pri/T03K5E00N-F03K7NP1U/orlatologo2.png" />
+        <img src="images/orlatologo2.png" />
         <span className="right">
           <FlatButton label="About" />
           <FlatButton label="Contact" />
         </span>
       </div>
       <div className="quote">
-      Previous: {previousQuestion}
-        Current: {currentQuestion}
+        <div className="previous">{previousQuestion}</div>
+        <div className="current">{currentQuestion}</div>
       </div>
         <div className="responsewrapper">
           <div className="response">
             <div className="phoebe">
               <div className="circular">
-                <img src="https://files.slack.com/files-pri/T03K5E00N-F03K6QD1J/phoebeprofilepicture.jpg" />
+                <img src="images/phoebeprofilepicture.jpg" />
               </div>
               <h5>Phoebe from Orlato</h5>
               Have a question? Just <strong>ask</strong>.
