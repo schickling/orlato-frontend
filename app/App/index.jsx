@@ -79,7 +79,7 @@ module.exports = React.createClass({
             </div>
             <div className="chatresponse">
               Hello John!<br />
-              Well done, you&#39;re {parseInt(this.state.progress, 10) * 100}% of the way through.
+              Well done, you&#39;re {parseInt(this.state.progress * 100, 10)}% of the way through.
             </div>
             <div className="clearfloat"></div>
             <div className="twitter">
