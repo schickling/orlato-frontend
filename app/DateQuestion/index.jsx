@@ -24,7 +24,7 @@ module.exports = React.createClass({
     return (
       <div>
         <span>{beforeToken}</span>
-        <DatePicker hintText="Hint Text" />
+        <DatePicker onChange={this._updateAnswer} hintText="Hint Text" />
         <span>{afterToken}</span>
       </div>
     );
