@@ -78,19 +78,19 @@ module.exports = React.createClass({
       <div>
 
       <Toolbar>
-      <ToolbarGroup key={0} float="left">
-      <span className="mui-toolbar-separator">&nbsp;</span>
-      </ToolbarGroup>
-      <ToolbarGroup key={1} float="right">
-      <span className="mui-toolbar-separator">&nbsp;</span>
-      <RaisedButton label="Insure me" primary={true} />
-      </ToolbarGroup>
+        <ToolbarGroup key={0} float="left">
+          <span className="mui-toolbar-separator">&nbsp;</span>
+        </ToolbarGroup>
+        <ToolbarGroup key={1} float="right">
+          <span className="mui-toolbar-separator">&nbsp;</span>
+          <RaisedButton label="Insure me" primary={true} />
+        </ToolbarGroup>
       </Toolbar>
       <div className="quote">
-      {groups}
-      <div className="estimate">estimate: {this.state.estimate}</div>
-      <div className="progress">progress:  <Slider name="slider2" disabled={true} value={this.state.progress} /></div>
-      </div>
+        {groups}
+          <div className="estimate">estimate: {this.state.estimate}</div>
+          <div className="progress">progress:  <Slider name="slider2" disabled={true} value={this.state.progress} /></div>
+        </div>
       </div>
     );
   },
