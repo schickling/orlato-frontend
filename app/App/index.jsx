@@ -21,6 +21,11 @@ function questionToComponent(disabled, question) {
   return <Component disabled={disabled} question={question} submit={this._submitQuestion} update={this._updateQuestion} />;
 }
 
+function initQuestions(questions) {
+  questions.forEach(q => q.value = '');
+  return questions;
+}
+
 module.exports = React.createClass({
 
   getInitialState: function() {
@@ -34,7 +39,7 @@ module.exports = React.createClass({
   componentWillMount: function() {
     var self = this;
     api.getInitial().then(data => self.setState({
-      currentQuestions: data.questions,
+      currentQuestions: initQuestions(data.questions),
       progress: data.progress,
     }));
   },
@@ -59,7 +64,7 @@ module.exports = React.createClass({
 
     if (data.questions) {
       newState.previousQuestions = this.state.currentQuestions;
-      newState.currentQuestions = data.questions;
+      newState.currentQuestions = initQuestions(data.questions);
     }
 
     this.setState(newState);

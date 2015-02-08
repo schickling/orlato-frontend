@@ -1,6 +1,6 @@
+var _ = require('lodash');
 var React = require('react');
 var { DropDownMenu } = require('material-ui');
-var api = require('../api');
 
 require('./index.less');
 
@@ -13,7 +13,7 @@ module.exports = React.createClass({
     disabled: React.PropTypes.bool.isRequired,
   },
 
-  _updateAnswer: function(index, menuItem) {
+  _updateAnswer: function(e, key, menuItem) {
     this.props.update(this.props.question.id, menuItem.payload);
     this.props.submit(this.props.question);
   },
@@ -23,14 +23,18 @@ module.exports = React.createClass({
     var tokenIndex = label.indexOf('%!');
     var beforeToken = label.substr(0, tokenIndex);
     var afterToken = label.substr(tokenIndex + 2);
-    var menuItems = this.props.question.options.map(o => ({ payload: o, text: o}));
+    var options = this.props.question.options.slice();
+    
+    options.unshift('');
 
-    menuItems.unshift({payload: '', text: ''});
+    var menuItems = options.map(o => ({ payload: o, text: o}));
+    var payload = this.props.question.value;
+    var selectedIndex = _.findIndex(menuItems, { payload });
 
     return (
       <div>
         <span>{beforeToken}</span>
-        <DropDownMenu value={this.props.question.value} disabled={this.props.disabled} onChange={this._updateAnswer} menuItems={menuItems} />
+        <DropDownMenu selectedIndex={selectedIndex} value={this.props.question.value} disabled={this.props.disabled} onChange={this._updateAnswer} menuItems={menuItems} />
         <span>{afterToken}</span>
       </div>
     );
