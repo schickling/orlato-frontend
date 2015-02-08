@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var api = require('../api');
 var { TextField } = require('material-ui');
 
@@ -6,9 +6,17 @@ require('./index.less');
 
 module.exports = React.createClass({
 
+  mixins: [React.addons.LinkedStateMixin],
+
   propTypes: {
     question: React.PropTypes.object.isRequired,
     update: React.PropTypes.func.isRequired,
+  },
+
+  getInitialState: function() {
+    return {
+      value: '',
+    };
   },
 
   _updateAnswer: function() {
@@ -24,7 +32,7 @@ module.exports = React.createClass({
     return (
       <div>
         <span>{beforeToken}</span>
-        <TextField onBlur={this._updateAnswer} hintText="Type Here" />
+        <TextField valueLink={this.linkState('value')} onBlur={this._updateAnswer} hintText="Type Here" />
         <span>{afterToken}</span>
       </div>
     );
