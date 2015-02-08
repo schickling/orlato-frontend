@@ -51,8 +51,6 @@ module.exports = React.createClass({
     var previousQuestions = this.state.previousQuestions.map(questionToComponent.bind(this));
     var currentQuestions = this.state.currentQuestions.map(questionToComponent.bind(this));
 
-    console.log(currentQuestions);
-
     return (
      <div> 
       <div className="topmenu">
