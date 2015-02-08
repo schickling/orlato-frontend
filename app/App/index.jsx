@@ -3,7 +3,7 @@ var React = require('react');
 var InputQuestion = require('../InputQuestion');
 var SelectQuestion = require('../SelectQuestion');
 var DateQuestion = require('../DateQuestion');
-var { Slider, FlatButton } = require('material-ui');
+var { Slider, FlatButton, RaisedButton } = require('material-ui');
 var api = require('../api');
 
 require('./index.less');
@@ -87,6 +87,8 @@ module.exports = React.createClass({
       <div className="quote">
         <div className="previous">{previousQuestions}</div>
         <div className="current">{currentQuestions}</div>
+        <RaisedButton label="Sumbit" secondary={true} />
+        <div className="cheekycomment">(Yes, really, that&#39;s it!)</div>
       </div>
         <div className="responsewrapper">
           <div className="response">
