@@ -24,6 +24,8 @@ module.exports = React.createClass({
     var defaultDate;
     if (this.props.question.value) {
       defaultDate = this.props.question.value;
+    } else {
+      defaultDate = new Date(1993, 1, 1, 0, 0, 0, 0);
     }
 
     return (

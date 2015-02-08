@@ -75,12 +75,13 @@ module.exports = React.createClass({
   },
 
   _dialog: function () {
+    api.submit();
     this.refs.dialog.show();
     this.setState({ isSpinning: true });
-    var self = this;
-    setTimeout(function() {
-      self.setState({ isSpinning: false });
-    }, 4000);
+    //var self = this;
+    //setTimeout(function() {
+      //self.setState({ isSpinning: false });
+    //}, 4000);
   },
 
   render: function() {
