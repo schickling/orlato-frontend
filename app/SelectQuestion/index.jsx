@@ -9,10 +9,13 @@ module.exports = React.createClass({
   propTypes: {
     question: React.PropTypes.object.isRequired,
     update: React.PropTypes.func.isRequired,
+    submit: React.PropTypes.func.isRequired,
+    disabled: React.PropTypes.bool.isRequired,
   },
 
   _updateAnswer: function(index, menuItem) {
-    api.sendAnswer(this.props.question.id, menuItem.payload).then(this.props.update);
+    this.props.update(this.props.question.id, menuItem.payload);
+    this.props.submit(this.props.question);
   },
 
   render: function() {
@@ -27,7 +30,7 @@ module.exports = React.createClass({
     return (
       <div>
         <span>{beforeToken}</span>
-        <DropDownMenu onChange={this._updateAnswer} menuItems={menuItems} />
+        <DropDownMenu value={this.props.question.value} disabled={this.props.disabled} onChange={this._updateAnswer} menuItems={menuItems} />
         <span>{afterToken}</span>
       </div>
     );

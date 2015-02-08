@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 var api = require('../api');
 var { TextField } = require('material-ui');
 
@@ -6,21 +6,16 @@ require('./index.less');
 
 module.exports = React.createClass({
 
-  mixins: [React.addons.LinkedStateMixin],
-
   propTypes: {
     question: React.PropTypes.object.isRequired,
     update: React.PropTypes.func.isRequired,
-  },
-
-  getInitialState: function() {
-    return {
-      value: '',
-    };
+    submit: React.PropTypes.func.isRequired,
+    disabled: React.PropTypes.bool.isRequired,
   },
 
   _updateAnswer: function() {
-    api.sendAnswer(this.props.question.id, this.state.value).then(this.props.update);
+    var value = this.refs.input.getValue();
+    this.props.update(this.props.question.id, value);
   },
 
   render: function() {
@@ -32,7 +27,7 @@ module.exports = React.createClass({
     return (
       <div>
         <span>{beforeToken}</span>
-        <TextField valueLink={this.linkState('value')} onBlur={this._updateAnswer} hintText="Type Here" />
+        <TextField ref="input" value={this.props.question.value} disabled={this.props.disabled} onChange={this._updateAnswer} onBlur={this.props.submit.bind(null, this.props.question)} hintText="Type Here" />
         <span>{afterToken}</span>
       </div>
     );

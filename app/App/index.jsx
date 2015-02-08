@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var React = require('react');
 var InputQuestion = require('../InputQuestion');
 var SelectQuestion = require('../SelectQuestion');
@@ -7,7 +8,7 @@ var api = require('../api');
 
 require('./index.less');
 
-function questionToComponent(question) {
+function questionToComponent(disabled, question) {
   if (!question) return;
   var Component;
   switch (question.type) {
@@ -17,7 +18,7 @@ function questionToComponent(question) {
     case 'date': Component = DateQuestion; break;
     default: throw new Error(question.type + ' not implemented');
   }
-  return <Component question={question} update={this._update} />;
+  return <Component disabled={disabled} question={question} submit={this._submitQuestion} update={this._updateQuestion} />;
 }
 
 module.exports = React.createClass({
@@ -38,7 +39,20 @@ module.exports = React.createClass({
     }));
   },
 
-  _update: function(data) {
+  _updateQuestion: function(id, value) {
+    var currentQuestions = this.state.currentQuestions;
+    var question = _.findWhere(currentQuestions, { id });
+    question.value = value;
+
+    this.setState({ currentQuestions });
+  },
+
+
+  _submitQuestion: function(question) {
+    api.sendAnswer(question.id, question.value).then(this._switchQuestions);
+  },
+
+  _switchQuestions: function(data) {
     var newState = {
       progress: data.progress,
     };
@@ -53,8 +67,8 @@ module.exports = React.createClass({
 
   render: function() {
     var merge = this._mergeState;
-    var previousQuestions = this.state.previousQuestions.map(questionToComponent.bind(this));
-    var currentQuestions = this.state.currentQuestions.map(questionToComponent.bind(this));
+    var previousQuestions = this.state.previousQuestions.map(questionToComponent.bind(this, true));
+    var currentQuestions = this.state.currentQuestions.map(questionToComponent.bind(this, false));
 
     return (
      <div> 
