@@ -13,6 +13,10 @@ module.exports = React.createClass({
     disabled: React.PropTypes.bool.isRequired,
   },
 
+  _onKeyUp: function (e) {
+    
+  },
+
   _updateAnswer: function() {
     var value = this.refs.input.getValue();
     this.props.update(this.props.question.id, value);
