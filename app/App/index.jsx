@@ -83,8 +83,7 @@ module.exports = React.createClass({
               <div className="circular">
                 <img src="images/phoebeprofilepicture.jpg" />
               </div>
-              <h5>Phoebe from Orlato</h5>
-              Have a question? Just <strong>ask</strong>.
+              <strong>Phoebe from Orlato</strong> Have a question? Just <strong>ask</strong>.
             </div>
             <div className="chatresponse">
               Hello John!<br />
