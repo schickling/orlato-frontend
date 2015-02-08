@@ -3,8 +3,11 @@ var React = require('react');
 var InputQuestion = require('../InputQuestion');
 var SelectQuestion = require('../SelectQuestion');
 var DateQuestion = require('../DateQuestion');
-var { Slider, FlatButton, RaisedButton } = require('material-ui');
+var { Slider, FlatButton, RaisedButton, Dialog } = require('material-ui');
 var api = require('../api');
+var standardActions = [
+  { text: 'Thank you, take me home' },
+];
 
 require('./index.less');
 
@@ -70,6 +73,10 @@ module.exports = React.createClass({
     this.setState(newState);
   },
 
+  _dialog: function () {
+    this.refs.dialog.show();
+  },
+
   render: function() {
     var merge = this._mergeState;
     var previousQuestions = this.state.previousQuestions.map(questionToComponent.bind(this, true));
@@ -87,8 +94,6 @@ module.exports = React.createClass({
       <div className="quote">
         <div className="previous">{previousQuestions}</div>
         <div className="current">{currentQuestions}</div>
-        <RaisedButton label="Sumbit" secondary={true} />
-        <div className="cheekycomment">(Yes, really, that&#39;s it!)</div>
       </div>
         <div className="responsewrapper">
           <div className="response">
@@ -99,8 +104,23 @@ module.exports = React.createClass({
               <strong>Phoebe from Orlato</strong> Have a question? Just <strong>ask</strong>.
             </div>
             <div className="chatresponse">
-              Hello John!<br />
               Well done, you&#39;re {parseInt(this.state.progress * 100, 10)}% of the way through.
+              <div className="submission">
+                You&#39;re all done! Get a quote:<br />
+                <RaisedButton onClick={this._dialog} label="Get quote" />
+                <Dialog ref="dialog" title="Get your quote" actions={standardActions}>
+                  <div className="aviva">
+                    <h2>£450</h2>
+                    with <a href="http://www.aviva.co.uk/">Aviva</a>
+                  </div>
+                  <div className="allianz">
+                    <h2>£300</h2>
+                    with <a href="https://www.allianz.co.uk/">Allianz</a>
+                  </div>
+                  <div className="clearfloat"></div>
+                </Dialog>
+                <br />
+                <h5>(Yes, really, that&#39;s it!)</h5></div>
             </div>
             <div className="clearfloat"></div>
             <div className="twitter">
