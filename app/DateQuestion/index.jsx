@@ -12,7 +12,8 @@ module.exports = React.createClass({
   },
 
   _updateAnswer: function() {
-    api.sendAnswer(this.props.question.id).then(this.props.update);
+    var value = this.refs.date.getDate();
+    api.sendAnswer(this.props.question.id, value).then(this.props.update);
   },
 
   render: function() {
@@ -24,7 +25,7 @@ module.exports = React.createClass({
     return (
       <div>
         <span>{beforeToken}</span>
-        <DatePicker onChange={this._updateAnswer} hintText="Hint Text" />
+        <DatePicker ref="date" onChange={this._updateAnswer} hintText="Hint Text" />
         <span>{afterToken}</span>
       </div>
     );

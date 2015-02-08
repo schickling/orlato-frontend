@@ -11,8 +11,8 @@ module.exports = React.createClass({
     update: React.PropTypes.func.isRequired,
   },
 
-  _updateAnswer: function() {
-    api.sendAnswer(this.props.question.id).then(this.props.update);
+  _updateAnswer: function(index, menuItem) {
+    api.sendAnswer(this.props.question.id, menuItem.payload).then(this.props.update);
   },
 
   render: function() {
@@ -21,6 +21,8 @@ module.exports = React.createClass({
     var beforeToken = label.substr(0, tokenIndex);
     var afterToken = label.substr(tokenIndex + 2);
     var menuItems = this.props.question.options.map(o => ({ payload: o, text: o}));
+
+    menuItems.unshift({payload: '', text: ''});
 
     return (
       <div>

@@ -17,18 +17,15 @@ module.exports = {
     return fetch(api + 'initial').then(status).then(json);
   },
 
-  sendAnswer: function(id) {
+  sendAnswer: function(id, value) {
     var options = {
       method: 'post',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        name: 'Hubot',
-        login: 'hubot',
-      })
+      body: JSON.stringify({ id, value })
     };
-    return fetch(api + 'answer/' + id, options).then(status).then(json);
+    return fetch(api + 'answer/', options).then(status).then(json);
   },
 };

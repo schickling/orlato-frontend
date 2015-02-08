@@ -39,11 +39,16 @@ module.exports = React.createClass({
   },
 
   _update: function(data) {
-    this.setState({
-      previousQuestions: this.state.currentQuestions,
-      currentQuestions: data.questions,
+    var newState = {
       progress: data.progress,
-    });
+    };
+
+    if (data.questions) {
+      newState.previousQuestions = this.state.currentQuestions;
+      newState.currentQuestions = data.questions;
+    }
+
+    this.setState(newState);
   },
 
   render: function() {
@@ -74,7 +79,7 @@ module.exports = React.createClass({
             </div>
             <div className="chatresponse">
               Hello John!<br />
-              Well done, you&#39;re {this.state.progress * 100}% of the way through.
+              Well done, you&#39;re {parseInt(this.state.progress, 10) * 100}% of the way through.
             </div>
             <div className="clearfloat"></div>
             <div className="twitter">

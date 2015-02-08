@@ -20,7 +20,7 @@ module.exports = React.createClass({
   },
 
   _updateAnswer: function() {
-    api.sendAnswer(this.props.question.id).then(this.props.update);
+    api.sendAnswer(this.props.question.id, this.state.value).then(this.props.update);
   },
 
   render: function() {
