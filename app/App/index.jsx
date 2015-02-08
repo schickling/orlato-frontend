@@ -6,7 +6,7 @@ var DateQuestion = require('../DateQuestion');
 var { Slider, FlatButton, RaisedButton, Dialog } = require('material-ui');
 var api = require('../api');
 var standardActions = [
-  { text: 'Thank you, take me home' },
+  { text: 'Thank you, take me back' },
 ];
 
 require('./index.less');
@@ -89,18 +89,19 @@ module.exports = React.createClass({
         <div className="submission">
         You&#39;re all done! Get a quote:<br />
         <RaisedButton onClick={this._dialog} label="Get quote" />
-        <Dialog ref="dialog" title="Get your quote" actions={standardActions}>
+        <Dialog ref="dialog" title="It will cost..." actions={standardActions}>
         <div className="aviva">
         <h2>£450</h2>
-        with <a href="http://www.aviva.co.uk/">Aviva</a>
+        with<br />
+        <img src="http://www.aviva.co.uk/library/images/logos/aviva-logo-secondary.gif" />
         </div>
         <div className="allianz">
         <h2>£300</h2>
-        with <a href="https://www.allianz.co.uk/">Allianz</a>
+        with<br />
+        <img src="http://www.hautevilleinsurance.com/Images/logo_allianz.jpg" />
         </div>
         <div className="clearfloat"></div>
         </Dialog>
-        <br />
         <h5>(Yes, really, that&#39;s it!)</h5></div>
       );
     } else {
