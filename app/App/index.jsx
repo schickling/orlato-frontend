@@ -82,6 +82,35 @@ module.exports = React.createClass({
     var previousQuestions = this.state.previousQuestions.map(questionToComponent.bind(this, true));
     var currentQuestions = this.state.currentQuestions.map(questionToComponent.bind(this, false));
 
+    var message;
+    //if (this.state.progress > 0.99) {
+    if (true) {
+      message = (
+        <div className="submission">
+        You&#39;re all done! Get a quote:<br />
+        <RaisedButton onClick={this._dialog} label="Get quote" />
+        <Dialog ref="dialog" title="Get your quote" actions={standardActions}>
+        <div className="aviva">
+        <h2>£450</h2>
+        with <a href="http://www.aviva.co.uk/">Aviva</a>
+        </div>
+        <div className="allianz">
+        <h2>£300</h2>
+        with <a href="https://www.allianz.co.uk/">Allianz</a>
+        </div>
+        <div className="clearfloat"></div>
+        </Dialog>
+        <br />
+        <h5>(Yes, really, that&#39;s it!)</h5></div>
+      );
+    } else {
+      message = (
+        <span>
+        Well done, you&#39;re {parseInt(this.state.progress * 100, 10)}% of the way through.
+        </span>
+      )
+    }
+
     return (
      <div> 
       <div className="topmenu">
@@ -104,23 +133,7 @@ module.exports = React.createClass({
               <strong>Phoebe from Orlato</strong> Have a question? Just <strong>ask</strong>.
             </div>
             <div className="chatresponse">
-              Well done, you&#39;re {parseInt(this.state.progress * 100, 10)}% of the way through.
-              <div className="submission">
-                You&#39;re all done! Get a quote:<br />
-                <RaisedButton onClick={this._dialog} label="Get quote" />
-                <Dialog ref="dialog" title="Get your quote" actions={standardActions}>
-                  <div className="aviva">
-                    <h2>£450</h2>
-                    with <a href="http://www.aviva.co.uk/">Aviva</a>
-                  </div>
-                  <div className="allianz">
-                    <h2>£300</h2>
-                    with <a href="https://www.allianz.co.uk/">Allianz</a>
-                  </div>
-                  <div className="clearfloat"></div>
-                </Dialog>
-                <br />
-                <h5>(Yes, really, that&#39;s it!)</h5></div>
+              {message}
             </div>
             <div className="clearfloat"></div>
             <div className="twitter">
