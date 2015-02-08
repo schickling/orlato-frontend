@@ -2,6 +2,7 @@ var React = require('react');
 var InputQuestion = require('../InputQuestion');
 var SelectQuestion = require('../SelectQuestion');
 var RadioQuestion = require('../RadioQuestion');
+var DateQuestion = require('../DateQuestion');
 var { Toolbar, ToolbarGroup, DropDownMenu, Icon, DropDownIcon, RaisedButton, Slider } = require('material-ui');
 var api = require('../api');
 
@@ -43,6 +44,7 @@ module.exports = React.createClass({
           case 'input': Component = InputQuestion; break;
           case 'select': Component = SelectQuestion; break;
           case 'radio': Component = RadioQuestion; break;
+          case 'date': Component = DateQuestion; break;
           default:
             throw new Error(question.type + ' not implemented');
         }
