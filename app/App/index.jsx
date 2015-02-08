@@ -12,6 +12,7 @@ function questionToComponent(question) {
   var Component;
   switch (question.type) {
     case 'input': Component = InputQuestion; break;
+    case 'number': Component = InputQuestion; break; // TODO add number
     case 'select': Component = SelectQuestion; break;
     case 'date': Component = DateQuestion; break;
     default: throw new Error(question.type + ' not implemented');
@@ -23,8 +24,8 @@ module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      previousQuestion: null,
-      currentQuestion: null,
+      previousQuestions: [],
+      currentQuestions: [],
       progress: 0,
     };
   },
@@ -32,37 +33,25 @@ module.exports = React.createClass({
   componentWillMount: function() {
     var self = this;
     api.getInitial().then(data => self.setState({
-      currentQuestion: data.question,
+      currentQuestions: data.questions,
       progress: data.progress,
     }));
   },
 
   _update: function(data) {
     this.setState({
-      previousQuestion: this.state.currentQuestion,
-      currentQuestion: data.question,
+      previousQuestions: this.state.currentQuestions,
+      currentQuestions: data.questions,
       progress: data.progress,
     });
   },
 
   render: function() {
     var merge = this._mergeState;
-    var previousQuestion = questionToComponent.call(this, this.state.previousQuestion);
-    var currentQuestion = questionToComponent.call(this, this.state.currentQuestion);
+    var previousQuestions = this.state.previousQuestions.map(questionToComponent.bind(this));
+    var currentQuestions = this.state.currentQuestions.map(questionToComponent.bind(this));
 
-    var filterOptions = [
-      { payload: '1', text: 'All Broadcasts' },
-      { payload: '2', text: 'All Voice' },
-      { payload: '3', text: 'All Text' },
-      { payload: '4', text: 'Complete Voice' },
-      { payload: '5', text: 'Complete Text' },
-      { payload: '6', text: 'Active Voice' },
-      { payload: '7', text: 'Active Text' },
-    ];
-    var iconMenuItems = [
-      { payload: '1', text: 'Download' },
-      { payload: '2', text: 'More Info' }
-    ];
+    console.log(currentQuestions);
 
     return (
      <div> 
@@ -74,8 +63,8 @@ module.exports = React.createClass({
         </span>
       </div>
       <div className="quote">
-        <div className="previous">{previousQuestion}</div>
-        <div className="current">{currentQuestion}</div>
+        <div className="previous">{previousQuestions}</div>
+        <div className="current">{currentQuestions}</div>
       </div>
         <div className="responsewrapper">
           <div className="response">
