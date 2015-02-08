@@ -92,7 +92,7 @@ module.exports = React.createClass({
     var message;
     if (this.state.isSpinning) {
       message = (
-       <div className="submission">
+       <div className="submission fixit">
           You&#39;re all done! Get a quote:<br />
           <RaisedButton onClick={this._dialog} label="Get quote" />
           <Dialog ref="dialog" title="It will cost..." actions={standardActions}>
@@ -103,7 +103,7 @@ module.exports = React.createClass({
       );
     } else if (this.state.progress > 0.99)  {
       message = (
-        <div className="submission">
+        <div className="submission fixit">
         You&#39;re all done! Get a quote:<br />
         <RaisedButton onClick={this._dialog} label="Get quote" />
         <Dialog ref="dialog" title="It will cost..." actions={standardActions}>
