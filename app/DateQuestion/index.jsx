@@ -1,5 +1,4 @@
 var React = require('react');
-var api = require('../api');
 var { DatePicker } = require('material-ui');
 
 require('./index.less');
@@ -9,11 +8,12 @@ module.exports = React.createClass({
   propTypes: {
     question: React.PropTypes.object.isRequired,
     update: React.PropTypes.func.isRequired,
+    submit: React.PropTypes.func.isRequired,
   },
 
-  _updateAnswer: function() {
-    var value = this.refs.date.getDate();
-    api.sendAnswer(this.props.question.id, value).then(this.props.update);
+  _updateAnswer: function(i, date) {
+    this.props.update(this.props.question.id, date);
+    this.props.submit(this.props.question);
   },
 
   render: function() {
@@ -21,11 +21,15 @@ module.exports = React.createClass({
     var tokenIndex = label.indexOf('%!');
     var beforeToken = label.substr(0, tokenIndex);
     var afterToken = label.substr(tokenIndex + 2);
+    var defaultDate;
+    if (this.props.question.value) {
+      defaultDate = this.props.question.value;
+    }
 
     return (
       <div>
         <span>{beforeToken}</span>
-        <DatePicker ref="date" onChange={this._updateAnswer} hintText="Hint Text" />
+        <DatePicker ref="date" defaultDate={defaultDate} onChange={this._updateAnswer} hintText="Hint Text" />
         <span>{afterToken}</span>
       </div>
     );
