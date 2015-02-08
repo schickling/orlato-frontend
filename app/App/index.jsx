@@ -122,6 +122,12 @@ module.exports = React.createClass({
         <h5>(Yes, really, that&#39;s it!)</h5></div>
 
       );
+    } else if (this.state.progress === 0) {
+      message = (
+        <span>
+        Hey there, let me help you get a quote.
+        </span>
+      )
     } else {
       message = (
         <span>

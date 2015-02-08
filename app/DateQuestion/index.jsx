@@ -1,5 +1,6 @@
 var React = require('react');
 var { DatePicker } = require('material-ui');
+var hack = true;
 
 require('./index.less');
 
@@ -24,8 +25,9 @@ module.exports = React.createClass({
     var defaultDate;
     if (this.props.question.value) {
       defaultDate = this.props.question.value;
-    } else {
+    } else if (hack) {
       defaultDate = new Date(1993, 1, 1, 0, 0, 0, 0);
+      hack = false;
     }
 
     return (
