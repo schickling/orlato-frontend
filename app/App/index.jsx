@@ -36,6 +36,7 @@ module.exports = React.createClass({
       previousQuestions: [],
       currentQuestions: [],
       progress: 0,
+      isSpinning: false,
     };
   },
 
@@ -75,6 +76,11 @@ module.exports = React.createClass({
 
   _dialog: function () {
     this.refs.dialog.show();
+    this.setState({ isSpinning: true });
+    var self = this;
+    setTimeout(function() {
+      self.setState({ isSpinning: false });
+    }, 4000);
   },
 
   render: function() {
@@ -83,8 +89,18 @@ module.exports = React.createClass({
     var currentQuestions = this.state.currentQuestions.map(questionToComponent.bind(this, false));
 
     var message;
-    //if (this.state.progress > 0.99) {
-    if (true) {
+    if (this.state.isSpinning) {
+      message = (
+       <div className="submission">
+          You&#39;re all done! Get a quote:<br />
+          <RaisedButton onClick={this._dialog} label="Get quote" />
+          <Dialog ref="dialog" title="It will cost..." actions={standardActions}>
+            <img src="images/Preloader_2.gif" />
+          </Dialog>
+        <h5>(Yes, really, that&#39;s it!)</h5>
+      </div>
+      );
+    } else if (this.state.progress > 0.99)  {
       message = (
         <div className="submission">
         You&#39;re all done! Get a quote:<br />
@@ -103,6 +119,7 @@ module.exports = React.createClass({
         <div className="clearfloat"></div>
         </Dialog>
         <h5>(Yes, really, that&#39;s it!)</h5></div>
+
       );
     } else {
       message = (
