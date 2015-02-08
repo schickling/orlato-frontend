@@ -26,6 +26,17 @@ module.exports = {
       },
       body: JSON.stringify({ id, value })
     };
-    return fetch(api + 'answer/', options).then(status).then(json);
+    return fetch(api + 'answer', options).then(status).then(json);
+  },
+
+  submit: function() {
+    var options = {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    };
+    return fetch(api + 'submit', options).then(status).then(json);
   },
 };
