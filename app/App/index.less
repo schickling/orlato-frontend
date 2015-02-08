@@ -8,8 +8,6 @@ body {
   font-weight: 300;
   color: #5d5d5d;
 }
-.container {
-}
 .questions {
 	text-align: center;
 }
@@ -36,7 +34,6 @@ body {
     overflow: hide;
     background: #fff;
 }
-
 .right {
 	float: right;
 }
@@ -104,13 +101,15 @@ h5 {
 }
 .previous {
 	opacity: 0.3;
-	height: 100%;
+	font-size: 2em;
 }
 .current {
 	font-size: 2em;
-	height: 100%;
+	min-height: 500px;
 }
-.current div.mui-text-field, 
-.current div.mui-drop-down-menu, .current div.mui-text-field div,.current div.mui-date-picker, .current div.mui-date-picker div  {
+.current div, .previous.div  {
 	display: inline-block;
+}
+.current div.mui-drop-down-menu div, .previous div.mui-drop-down-menu div, .current div.mui-date-picker-calendar-container div{
+	display: block;
 }
