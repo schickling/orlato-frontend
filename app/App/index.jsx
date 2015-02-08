@@ -3,7 +3,7 @@ var InputQuestion = require('../InputQuestion');
 var SelectQuestion = require('../SelectQuestion');
 var RadioQuestion = require('../RadioQuestion');
 var DateQuestion = require('../DateQuestion');
-var { Toolbar, ToolbarGroup, DropDownMenu, Icon, DropDownIcon, RaisedButton, Slider } = require('material-ui');
+var { Slider, FlatButton } = require('material-ui');
 var api = require('../api');
 
 require('./index.less');
@@ -77,21 +77,36 @@ module.exports = React.createClass({
     ];
 
     return (
-      <div>
-
-      <Toolbar>
-        <ToolbarGroup key={0} float="left">
-          <span className="mui-toolbar-separator">&nbsp;</span>
-        </ToolbarGroup>
-        <ToolbarGroup key={1} float="right">
-          <span className="mui-toolbar-separator">&nbsp;</span>
-          <RaisedButton label="Insure me" primary={true} />
-        </ToolbarGroup>
-      </Toolbar>
+     <div> 
+      <div className="topmenu">
+        <img src="https://files.slack.com/files-pri/T03K5E00N-F03K7NP1U/orlatologo2.png" />
+        <span className="right">
+          <FlatButton label="About" />
+          <FlatButton label="Contact" />
+        </span>
+      </div>
       <div className="quote">
         {groups}
-          <div className="estimate">estimate: {this.state.estimate}</div>
-          <div className="progress">progress:  <Slider name="slider2" disabled={true} value={this.state.progress} /></div>
+      </div>
+        <div className="responsewrapper">
+          <div className="response">
+            <div className="phoebe">
+              <div className="circular">
+                <img src="https://files.slack.com/files-pri/T03K5E00N-F03K6QD1J/phoebeprofilepicture.jpg" />
+              </div>
+              <h5>Phoebe from Orlato</h5>
+              Have a question? Just <strong>ask</strong>.
+            </div>
+            <div className="chatresponse">
+              Hello John!<br />
+              Well done, you&#39;re {this.state.progress * 100}% of the way through.
+            </div>
+            <div className="clearfloat"></div>
+            <div className="twitter">
+              <a href="http://twitter.com/orlatohq"><img src="http://jennybrennan.com/images/twittericon.png" /></a>
+              <a href="mailto:info@orlato.com"><img src="http://jennybrennan.com/images/emailicon.png" /></a>
+            </div>
+          </div>
         </div>
       </div>
     );

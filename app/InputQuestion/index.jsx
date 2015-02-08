@@ -24,7 +24,7 @@ module.exports = React.createClass({
     return (
       <div>
         <span>{beforeToken}</span>
-        <TextField onBlur={this._updateAnswer} hintText="Hint Text" />
+        <TextField onBlur={this._updateAnswer} hintText="Type Here" />
         <span>{afterToken}</span>
       </div>
     );
