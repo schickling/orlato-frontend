@@ -17,7 +17,7 @@ module.exports = {
     return fetch(api + 'initial').then(status).then(json);
   },
 
-  sendAnswer: function() {
+  sendAnswer: function(id) {
     var options = {
       method: 'post',
       headers: {
@@ -29,6 +29,6 @@ module.exports = {
         login: 'hubot',
       })
     };
-    return fetch(api + 'answer', options).then(status).then(json);
+    return fetch(api + 'answer/' + id, options).then(status).then(json);
   },
 };

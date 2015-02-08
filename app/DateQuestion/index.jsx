@@ -12,14 +12,14 @@ module.exports = React.createClass({
   },
 
   _updateAnswer: function() {
-    api.sendAnswer().then(this.props.update);
+    api.sendAnswer(this.props.question.id).then(this.props.update);
   },
 
   render: function() {
-    var text = this.props.question.text;
-    var tokenIndex = text.indexOf('%!');
-    var beforeToken = text.substr(0, tokenIndex);
-    var afterToken = text.substr(tokenIndex + 2);
+    var label = this.props.question.label;
+    var tokenIndex = label.indexOf('%!');
+    var beforeToken = label.substr(0, tokenIndex);
+    var afterToken = label.substr(tokenIndex + 2);
 
     return (
       <div>
