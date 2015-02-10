@@ -10,7 +10,8 @@ function json(response) {
   return response.json();
 }
 
-var api = 'http://localhost:8000/';
+//var api = 'http://localhost:8000/';
+var api = 'http://dev.schickling.me:8000/';
 
 module.exports = {
   getInitial: function() {
