@@ -8,6 +8,11 @@
     "start": "webpack-dev-server --hot --inline --history-api-fallback --devtool source-map --port 9000",
     "deploy": "npm run build && gh-pages-deploy"
   },
+  "gh-pages-deploy": {
+    "staticpath": "build",
+    "cname": "beta.orlato.com",
+    "noprompt": true
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
