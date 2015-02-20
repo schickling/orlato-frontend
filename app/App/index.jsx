@@ -4,7 +4,8 @@ var InputQuestion = require('../InputQuestion');
 var SelectQuestion = require('../SelectQuestion');
 var DateQuestion = require('../DateQuestion');
 var { Slider, FlatButton, RaisedButton, Dialog } = require('material-ui');
-var api = require('../api');
+//var api = require('../api');
+var api = require('../mock_api');
 var standardActions = [
   { text: 'Thank you, take me back' },
 ];

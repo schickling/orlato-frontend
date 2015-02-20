@@ -1,0 +1,140 @@
+[
+    [{
+        "label": "My name is %! ",
+        "id": "first_name",
+        "type": "input"
+    }, {
+        "label": "%! ",
+        "id": "last_name",
+        "type": "input"
+    }, {
+        "label": "and I'd like to cover %!.",
+        "id": "product_type",
+        "type": "select",
+        "options": ["my car"]
+    }], 
+    [{
+        "label": "My status is %! ",
+        "id": "marital_status",
+        "type": "select",
+        "options": ["single", "married", "common law", "divorced", "widowed", "civil partner"]
+    }, {
+        "label": "and you can address me as %!.",
+        "id": "title",
+        "type": "select",
+        "options": ["mr", "ms", "mrs", "miss"]
+    }], 
+    [{
+        "label": "I was born on %! ",
+        "id": "date_of_birth",
+        "type": "date"
+    }, {
+        "label": "and I live at %!.",
+        "id": "postcode",
+        "type": "input"
+    }], 
+    [{
+        "label": "If you need to contact me, my e-mail address is %! ",
+        "id": "email",
+        "type": "input"
+    }, {
+        "label": "and my phone number is %!.",
+        "id": "phone",
+        "type": "input"
+    }], 
+    [{
+        "label": "Currently, I am %! as a ",
+        "id": "employment_type",
+        "type": "select",
+        "options": ["employed", "self-employed", "retired", "not employed due to disability", "household duties", "full/part time education", "voluntary worker", "unemployed"],
+        "children": [{
+            "label": "%! in the ",
+            "id": "profession",
+            "type": "input"
+        }, {
+            "label": "%! industry.",
+            "id": "industry",
+            "type": "input"
+        }]
+    }], 
+    [{
+        "label": "My car's registration number is %! ",
+        "id": "vehicle_registration_number",
+        "type": "input"
+    }, {
+        "label": "and it's worth approximately £%!.",
+        "id": "vehicle_approximate_value",
+        "type": "number",
+        "min": 0,
+        "max": 500000
+    }], 
+    [{
+        "label": "I %! the registered owner of this vehicle ",
+        "id": "vehicle_registrerd_owner",
+        "type": "select",
+        "options": ["am", "am not"]
+    }, {
+        "label": "and overnight I keep it %!.",
+        "id": "vechile_overnight_location",
+        "type": "select",
+        "options": ["Garaged",
+            "Parked on Drive",
+            "Carport",
+            "Kept on public road",
+            "Kept on private property",
+            "Car park",
+            "Other"]
+    }], 
+    [{
+        "label": "I use this vehicle for %! ",
+        "id": "vehicle_use",
+        "type": "select",
+        "options": ["Social, domestic & pleasure only",
+            "All of the above, plus commuting",
+            "All of the above, plus personal business use",
+            "All of the above, plus employer's business use"]
+    }, {
+        "label": "and together we will travel around %! miles this year.",
+        "id": "vehicle_miles_travelled_this_year",
+        "type": "number",
+        "min": 0,
+        "max": 150000
+    }], 
+    [{
+        "label": "I've held my %! license for ",
+        "id": "driving_license_type",
+        "type": "select",
+        "options": ["UK Full", "Other"]
+    }, {
+        "label": " %! years.",
+        "id": "driving_license_age",
+        "type": "number",
+        "min": 0,
+        "max": 25
+    }], 
+    [{
+        "label": "I've had %! motor claims and ",
+        "id": "number_of_motor_claims",
+        "type": "number",
+        "min": 0,
+        "max": 6
+    }, {
+        "label": "%! motor convictions in the last 4 years.",
+        "id": "number_of_motor_convictions",
+        "type": "number",
+        "min": 0,
+        "max": 6
+    }], 
+    [{
+        "label": "I have %! years no claim discount to use on this vehicle.",
+        "id": "no_claims_years",
+        "type": "number",
+        "min": 0,
+        "max": 10
+    }], 
+    [{
+        "label": "Please start my vehicle cover on %!.",
+        "id": "vehicle_cover_start_date",
+        "type": "date"
+    }]
+]
